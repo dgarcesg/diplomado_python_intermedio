@@ -140,7 +140,7 @@ c1.metric("Documentos procesados", len(docs_f), help=f"{len(docs)} en total")
 c2.metric("Minutos de audio transcritos", f"{asr_f.duracion_seg.sum() / 60:.1f}",
           help=f"{asr.duracion_seg.sum() / 60:.1f} min en {len(asr)} clips en total")
 c3.metric("CER (10 documentos)", "pendiente" if cer is None else f"{cer:.3f}", help=modelo_cer)
-c4.metric("WER (10 clips)", "pendiente" if wer is None else f"{wer:.3f}", help=modelo_wer)
+c4.metric("WER (9 clips)", "pendiente" if wer is None else f"{wer:.3f}", help=modelo_wer)
 c5.metric("Concordancia LLM vs. humano", concordancia, help=detalle_auditoria)
 
 tab_resultados, tab_docs, tab_audios, tab_fuentes = st.tabs(
@@ -170,7 +170,7 @@ with tab_resultados:
         eval_f = evaluacion[evaluacion.modelo.isin(modelos)]
         fig = px.bar(eval_f, x="modelo", y="valor", color="modalidad", facet_col="metrica", text_auto=".3f",
                      labels={"valor": "Error (menor es mejor)", "modelo": "Modelo"},
-                     title="Error de cada modelo sobre las mismas muestras de 10 documentos y 10 clips")
+                     title="Error de cada modelo sobre las mismas muestras de 10 documentos y 9 clips")
         fig.update_xaxes(matches=None)
         st.plotly_chart(fig, width="stretch")
     else:
