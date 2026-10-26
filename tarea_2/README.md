@@ -4,7 +4,7 @@
 
 Pipeline abierto y local que extrae texto de documentos peruanos con **PaddleOCR**, transcribe entrevistas en español peruano con **faster-whisper** (VAD + diarización), seudonimiza los nombres de las personas entrevistadas y publica los resultados en un dashboard de **Streamlit**.
 
-**Dashboard público:** _(pendiente: enlace de Streamlit Community Cloud)_
+**Dashboard público:** https://diplomadopythonintermedio-tarea2.streamlit.app/
 
 ## Corpus, fuentes y licencias
 
@@ -59,7 +59,7 @@ tarea_2/
 ├── app.py                  # Dashboard de Streamlit (solo lee CSV)
 ├── voz.py                  # Módulo de audio de la Sesión 13
 ├── requirements.txt        # Dependencias de la app
-├── evidencias_ia/          # Capturas de la conversación con el asistente de IA
+├── evidencias_ia/          # Conversación completa con el asistente de IA (Claude Code)
 └── datos/
     ├── documentos.csv      # OCR de los 25 documentos
     ├── transcripciones.csv # ASR de los clips en español (seudonimizado)
