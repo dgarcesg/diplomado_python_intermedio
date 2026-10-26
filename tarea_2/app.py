@@ -128,8 +128,9 @@ if consulta:
 # ───────────────────────────────────────────────────────── indicadores
 cer, modelo_cer = metrica_modelo("documento", "CER")
 wer, modelo_wer = metrica_modelo("audio", "WER")
-if auditoria is not None and len(auditoria):
-    correctas = auditoria.correcta.astype(str).str.lower().isin(["true", "1", "si", "sí"]).sum()
+revisada = auditoria is not None and auditoria.correcta.fillna("").astype(str).str.strip().ne("").all()
+if revisada and len(auditoria):
+    correctas = auditoria.correcta.astype(str).str.strip().str.lower().isin(["true", "1", "si", "sí"]).sum()
     concordancia, detalle_auditoria = f"{correctas / len(auditoria):.0%}", f"{correctas}/{len(auditoria)} correctas"
 else:
     concordancia, detalle_auditoria = "pendiente", "auditoría de la Parte 2"
