@@ -1,0 +1,10 @@
+temporada,inicio,fin,meses_en_datos,meses_nino,magnitud_nino,completa,foco
+2015-16,2016-01,2016-05,5,5,Fuerte,False,
+2016-17,2016-12,2017-05,6,4,Moderado,True,Niño Costero 2017
+2017-18,2017-12,2018-05,6,0,,True,
+2018-19,2018-12,2019-05,6,2,Débil,True,
+2019-20,2019-12,2020-05,6,0,,True,
+2020-21,2020-12,2021-05,6,0,,True,
+2021-22,2021-12,2022-05,6,0,,True,
+2022-23,2022-12,2023-05,6,3,Fuerte,True,Niño Costero 2023
+2023-24,2023-12,2024-05,6,3,Fuerte,True,

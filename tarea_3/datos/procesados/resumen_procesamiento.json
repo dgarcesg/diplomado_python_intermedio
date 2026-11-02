@@ -1,0 +1,50 @@
+{
+  "registros_leidos": 142139,
+  "periodo": {
+    "desde": "2016-01-01",
+    "hasta": "2024-05-31",
+    "registros": 61829
+  },
+  "duplicados_exactos_eliminados": 0,
+  "codigos_repetidos_con_contenido_distinto": {
+    "codigos": 7,
+    "decision": "Se conservan: cada par tiene otra fecha, otro distrito y otro peligro"
+  },
+  "peligros": {
+    "nombres_originales": 22,
+    "nombres_normalizados": 22
+  },
+  "temporadas_con_nino_costero": [
+    "2015-16",
+    "2016-17",
+    "2018-19",
+    "2022-23",
+    "2023-24"
+  ],
+  "temporadas_incompletas": [
+    "2015-16"
+  ],
+  "registros_con_dano_vial": {
+    "todos_los_peligros": 11491,
+    "peligros_climaticos": 10817,
+    "puentes_destruidos_en_peligros_excluidos": 158
+  },
+  "valores_extremos": {
+    "revisados": 22,
+    "excluidos": 2
+  },
+  "cruce_ubigeo": {
+    "ubigeos_sinpad": 1884,
+    "cruzan_directo": 1866,
+    "cruzan_por_union_mazamari_pangoa": 2,
+    "sin_cruce": 16,
+    "registros_viales_sin_cruce": 60,
+    "distritos_mapa_ign": 1873
+  },
+  "salida": {
+    "archivo": "datos/procesados/emergencias_viales.csv",
+    "registros": 10817,
+    "desde": "2016-01-01",
+    "hasta": "2024-05-31"
+  }
+}

@@ -1,0 +1,10 @@
+temporada,inicio,fin,meses_en_datos,meses_nino,magnitud_nino,completa,foco,tipo,puentes_destruidos,puentes_afectados,carretera_destruida_km,carretera_afectada_km,camino_rural_destruido_km,camino_rural_afectado_km,km_via_destruidos,km_via_afectados,registros,distritos_con_dano,distritos_con_destruccion,multiplicador_puentes_destruidos,multiplicador_puentes_afectados,multiplicador_km_via_destruidos,multiplicador_carretera_destruida_km,multiplicador_distritos_con_dano,multiplicador_distritos_con_destruccion
+2015-16,2016-01,2016-05,5,5,Fuerte,False,,Incompleta,115.0,248.0,233.09,732.49,253.11,794.21,486.2,1526.7,496,387,175,0.66,0.83,2.4,1.3,1.12,0.91
+2016-17,2016-12,2017-05,6,4,Moderado,True,Niño Costero 2017,Niño Costero 2017,498.0,951.0,3308.05,9363.31,2299.6,5077.08,5607.65,14440.39,2237,977,603,2.84,3.19,27.73,18.42,2.83,3.14
+2017-18,2017-12,2018-05,6,0,,True,,Normal,61.0,105.0,343.99,1443.82,68.88,691.24,412.87,2135.06,555,330,137,0.35,0.35,2.04,1.92,0.96,0.71
+2018-19,2018-12,2019-05,6,2,Débil,True,,Otra con Niño costero,219.0,456.0,370.42,1827.14,44.71,208.93,415.13,2036.06,743,359,178,1.25,1.53,2.05,2.06,1.04,0.93
+2019-20,2019-12,2020-05,6,0,,True,,Normal,176.0,391.0,180.81,1481.16,25.48,149.8,206.3,1630.96,636,299,170,1.0,1.31,1.02,1.01,0.87,0.89
+2020-21,2020-12,2021-05,6,0,,True,,Normal,203.0,326.0,178.37,1295.57,19.78,98.68,198.16,1394.24,910,372,214,1.16,1.09,0.98,0.99,1.08,1.11
+2021-22,2021-12,2022-05,6,0,,True,,Normal,175.0,271.0,156.21,773.03,22.51,75.5,178.72,848.53,856,360,214,1.0,0.91,0.88,0.87,1.04,1.11
+2022-23,2022-12,2023-05,6,3,Fuerte,True,Niño Costero 2023,Niño Costero 2023,650.0,1142.0,1656.19,6076.33,229.04,889.81,1885.23,6966.14,2088,859,572,3.7,3.83,9.32,9.22,2.49,2.98
+2023-24,2023-12,2024-05,6,3,Fuerte,True,,Otra con Niño costero,251.0,525.0,785.94,3868.67,67.52,437.58,853.46,4306.25,1773,688,472,1.43,1.76,4.22,4.38,1.99,2.46
