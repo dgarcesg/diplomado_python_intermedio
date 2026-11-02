@@ -319,8 +319,9 @@ def main():
     mapa = distritos.rename(columns={"adm3_name": "distrito", "adm2_name": "provincia",
                                      "adm1_name": "departamento"})[["ubigeo", "distrito", "provincia",
                                                                     "departamento", "geometry"]]
-    mapa["geometry"] = mapa.geometry.simplify(0.003, preserve_topology=True)
-    mapa.to_file(PROCESADOS / "distritos.geojson", driver="GeoJSON", COORDINATE_PRECISION=4)
+    # Simplificado a ~500 m y 3 decimales (~100 m): 1,5 MB, liviano para el mapa web.
+    mapa["geometry"] = mapa.geometry.simplify(0.005, preserve_topology=True)
+    mapa.to_file(PROCESADOS / "distritos.geojson", driver="GeoJSON", COORDINATE_PRECISION=3)
 
     # 9. Guardar -------------------------------------------------------------
     viales["fecha"] = viales["fecha"].dt.date
