@@ -1,0 +1,97 @@
+{
+  "cobertura": {
+    "desde": "2016-01-01",
+    "hasta": "2024-05-31",
+    "registros_con_dano_vial": 10817,
+    "distritos_con_dano_vial": 1591
+  },
+  "pct_puentes_destruidos_en_dic_may": 98.2,
+  "temporadas_normales": [
+    "2017-18",
+    "2019-20",
+    "2020-21",
+    "2021-22"
+  ],
+  "mediana_normal": {
+    "puentes_destruidos": 175.5,
+    "puentes_afectados": 298.5,
+    "carretera_destruida_km": 179.59,
+    "carretera_afectada_km": 1369.7,
+    "camino_rural_destruido_km": 24.0,
+    "camino_rural_afectado_km": 124.24,
+    "km_via_destruidos": 202.23,
+    "km_via_afectados": 1512.6,
+    "distritos_con_dano": 345.0,
+    "distritos_con_destruccion": 192.0
+  },
+  "temporadas_foco": {
+    "2016-17": {
+      "nombre": "Niño Costero 2017",
+      "puentes_destruidos": 498.0,
+      "puentes_afectados": 951.0,
+      "carretera_destruida_km": 3308.05,
+      "carretera_afectada_km": 9363.31,
+      "camino_rural_destruido_km": 2299.6,
+      "camino_rural_afectado_km": 5077.08,
+      "km_via_destruidos": 5607.65,
+      "km_via_afectados": 14440.39,
+      "distritos_con_dano": 977,
+      "distritos_con_destruccion": 603,
+      "multiplicador_puentes_destruidos": 2.84,
+      "multiplicador_km_via_destruidos": 27.73,
+      "multiplicador_distritos_con_destruccion": 3.14,
+      "top_departamento_puentes": {
+        "departamento": "LIMA PROVINCIAS",
+        "puentes_destruidos": 134.0
+      },
+      "top_departamento_km_via": {
+        "departamento": "PIURA",
+        "km_via_destruidos": 1664.24
+      },
+      "pct_costa_norte_puentes_destruidos": 27.5,
+      "pct_costa_norte_km_via_destruidos": 43.4,
+      "pct_top10_distritos_puentes_destruidos": 24.5,
+      "pct_top10_distritos_km_via_destruidos": 21.3
+    },
+    "2022-23": {
+      "nombre": "Niño Costero 2023",
+      "puentes_destruidos": 650.0,
+      "puentes_afectados": 1142.0,
+      "carretera_destruida_km": 1656.19,
+      "carretera_afectada_km": 6076.33,
+      "camino_rural_destruido_km": 229.04,
+      "camino_rural_afectado_km": 889.81,
+      "km_via_destruidos": 1885.23,
+      "km_via_afectados": 6966.14,
+      "distritos_con_dano": 859,
+      "distritos_con_destruccion": 572,
+      "multiplicador_puentes_destruidos": 3.7,
+      "multiplicador_km_via_destruidos": 9.32,
+      "multiplicador_distritos_con_destruccion": 2.98,
+      "top_departamento_puentes": {
+        "departamento": "CAJAMARCA",
+        "puentes_destruidos": 121.0
+      },
+      "top_departamento_km_via": {
+        "departamento": "LAMBAYEQUE",
+        "km_via_destruidos": 516.94
+      },
+      "pct_costa_norte_puentes_destruidos": 31.2,
+      "pct_costa_norte_km_via_destruidos": 64.4,
+      "pct_top10_distritos_puentes_destruidos": 26.6,
+      "pct_top10_distritos_km_via_destruidos": 36.8
+    }
+  },
+  "reincidentes": {
+    "distritos": 294,
+    "puentes_destruidos_en_ambos": 696.0,
+    "pct_de_los_puentes_destruidos_en_ambos_ninos": 60.6,
+    "por_departamento": {
+      "ANCASH": 49,
+      "PIURA": 41,
+      "LIMA PROVINCIAS": 40,
+      "AYACUCHO": 36,
+      "CAJAMARCA": 28
+    }
+  }
+}

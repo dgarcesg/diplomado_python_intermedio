@@ -1,0 +1,23 @@
+codigo_sinpad,fecha,ubigeo,departamento,distrito,peligro,variable,valor,umbral_p99_9,decision,motivo
+84353,2017-03-18,140203,LAMBAYEQUE,INCAHUASI,LLUVIA INTENSA,camino_rural_afectado_km,96.66,80.75,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+87715,2017-03-25,140307,LAMBAYEQUE,MOTUPE,HUAYCO,camino_rural_afectado_km,81.73,80.75,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+88571,2017-03-30,200307,PIURA,SONDOR,LLUVIA INTENSA,camino_rural_afectado_km,80.98,80.75,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+87378,2017-04-05,200111,PIURA,LAS LOMAS,LLUVIA INTENSA,camino_rural_destruido_km,112.0,85.35,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+84353,2017-03-18,140203,LAMBAYEQUE,INCAHUASI,LLUVIA INTENSA,camino_rural_destruido_km,87.5,85.35,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+195949,2024-03-18,040808,AREQUIPA,SAYLA,LLUVIA INTENSA,carretera_afectada_km,290.996,172.36,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+88062,2017-03-27,200114,PIURA,TAMBO GRANDE,LLUVIA INTENSA,carretera_afectada_km,261.3,172.36,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+165952,2023-03-08,131101,LA LIBERTAD,CASCAS,LLUVIA INTENSA,carretera_afectada_km,219.24106,172.36,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+82755,2017-02-17,110301,ICA,NASCA,INUNDACION,carretera_afectada_km,200.0,172.36,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+82749,2017-02-26,110301,ICA,NASCA,INUNDACION,carretera_afectada_km,200.0,172.36,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+84514,2017-03-14,120209,JUNIN,MARISCAL CASTILLA,DERRUMBE DE CERRO,carretera_afectada_km,200.0,172.36,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+170716,2023-04-07,140203,LAMBAYEQUE,INCAHUASI,LLUVIA INTENSA,carretera_afectada_km,195.63,172.36,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+165703,2023-03-07,140203,LAMBAYEQUE,INCAHUASI,LLUVIA INTENSA,carretera_afectada_km,189.93,172.36,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+172560,2023-04-26,140301,LAMBAYEQUE,LAMBAYEQUE,LLUVIA INTENSA,carretera_destruida_km,117.7,94.51,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+166548,2023-03-10,140202,LAMBAYEQUE,CANARIS,LLUVIA INTENSA,carretera_destruida_km,112.4146,94.51,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+92674,2018-03-19,150809,LIMA PROVINCIAS,SANTA LEONOR,LLUVIA INTENSA,carretera_destruida_km,100.0,94.51,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+85733,2017-03-16,040811,AREQUIPA,TORO,LLUVIA INTENSA,carretera_destruida_km,98.0,94.51,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+199967,2024-04-17,230201,TACNA,CANDARAVE,LLUVIA INTENSA,puentes_afectados,1000.0,32.92,excluir valor,"Mismo registro: 1000 puentes afectados, 25 veces el siguiente valor más alto"
+194844,2024-03-11,150603,LIMA PROVINCIAS,ATAVILLOS BAJO,INUNDACION,puentes_afectados,40.0,32.92,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+84342,2017-03-03,140202,LAMBAYEQUE,CANARIS,LLUVIA INTENSA,puentes_afectados,33.0,32.92,conservar,Alto pero verosímil para el tamaño del distrito y el evento
+199967,2024-04-17,230201,TACNA,CANDARAVE,LLUVIA INTENSA,puentes_destruidos,100.0,37.08,excluir valor,"Candarave (Tacna), 17/04/2024: 100 puentes destruidos y 1000 afectados en un solo evento; en el resto del periodo el máximo de cada variable es 40"
+188141,2024-01-23,040403,AREQUIPA,AYO,HUAYCO,puentes_destruidos,40.0,37.08,conservar,Alto pero verosímil para el tamaño del distrito y el evento
