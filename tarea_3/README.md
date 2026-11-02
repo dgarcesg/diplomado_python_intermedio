@@ -13,7 +13,10 @@
 
 ## 2. Descripción del proyecto
 
-*(Pendiente: dashboard y reel.)*
+El proyecto tiene dos productos, construidos con los mismos datos:
+
+- **Dashboard interactivo** ([infraestructura-ninos-costeros.streamlit.app](https://infraestructura-ninos-costeros.streamlit.app/)), hecho en Streamlit. Muestra 4 indicadores clave y un mapa distrital del daño y de la reincidencia. También compara cada temporada con la línea base, sigue el daño mes a mes junto al calentamiento del mar y tiene rankings por departamento y una lista de distritos reincidentes. Se filtra por temporada, indicador, departamento y distrito, y permite descargar los datos filtrados.
+- **Reel vertical de unos 65 segundos** (`reel/`): cuenta los hallazgos con gráficos y mapas, narrado con mi voz clonada con IA, con subtítulos y música de fondo.
 
 ## 3. Fuentes de datos y metodología
 
@@ -110,7 +113,8 @@ Las salidas están en `web/data/`: `por_temporada.csv`, `por_temporada_peligro.c
 
 ## 6. Enlaces
 
-- Dashboard: *(pendiente)*
+- Dashboard: https://infraestructura-ninos-costeros.streamlit.app/
+- Reel: https://drive.google.com/file/d/1KCr2tccy8RB4c-hOPeQL6rROYDBzQmmE/view?usp=sharing
 - Publicación de LinkedIn: *(pendiente)*
 
 ## 7. Cómo reproducir
@@ -124,9 +128,28 @@ python scripts/analizar_datos.py     # escribe los indicadores en web/data/
 
 Si un archivo ya existe, `obtener_datos.py` no lo vuelve a descargar: solo verifica su SHA-256 contra `datos/fuentes.csv`. El CSV del SINPAD se versiona en el repositorio porque el portal lo reemplaza cada semestre.
 
+**Dashboard:**
+
+```bash
+pip install -r web/requirements.txt
+streamlit run web/app.py
+```
+
+**Reel** (en el entorno de la Sesión 15, con `qwen-tts` y `faster-whisper`):
+
+```bash
+python reel/imagenes.py                                         # gráficos y mapa de cada escena (entorno de los scripts)
+python reel/hacer_reel.py voz --voz mi_voz.m4a                  # voz clonada y subtítulos
+python reel/hacer_reel.py video --musica reel/musica.mp3 --credito-musica "Título · Autor (Pixabay)"
+```
+
+La grabación de mi voz, la música y las salidas (`reel/salidas/`) no se versionan.
+
 ## 8. Uso de inteligencia artificial
 
-*(Pendiente.)*
+- **Claude Code (Anthropic)** me ayudó a escribir los scripts de obtención, procesamiento y análisis, el dashboard, el borrador del guion y el montaje del reel. Yo tomé las decisiones de alcance: el periodo, la línea base y qué afirmaciones incluir. También revisé las cifras contra los datos.
+- **Qwen3-TTS 0.6B (Alibaba, Apache 2.0)** generó la narración del reel clonando mi propia voz a partir de 16,5 segundos de una grabación propia.
+- **Whisper large-v3-turbo (OpenAI, MIT)**, con `faster-whisper`, generó los subtítulos y midió qué tan bien se entiende cada escena.
 
 ## Estructura
 
@@ -142,6 +165,14 @@ tarea_3/
 │   ├── obtener_datos.py     # Paso 2: descarga y registro de fuentes
 │   ├── procesar_datos.py    # Paso 3: limpieza y unificación
 │   └── analizar_datos.py    # Paso 4: indicadores para el dashboard
-└── web/
-    └── data/                # tablas, kpis.json y distritos.geojson del dashboard
+├── web/
+│   ├── app.py               # dashboard en Streamlit
+│   ├── requirements.txt
+│   ├── .streamlit/          # tema negro
+│   └── data/                # tablas, kpis.json y distritos.geojson del dashboard
+└── reel/
+    ├── guion.json           # escenas: frase narrada, cifra, etiqueta, imagen y origen de cada cifra
+    ├── imagenes.py          # gráficos y mapa de cada escena
+    ├── imagenes/            # las 7 imágenes del reel
+    └── hacer_reel.py        # voz clonada, subtítulos, música y video 1080 x 1920
 ```

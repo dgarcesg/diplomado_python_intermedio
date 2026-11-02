@@ -14,3 +14,7 @@ __pycache__/
 
 # Grabación de voz del autor para el reel (no se publica)
 audio-modelo-tarea-3.m4a
+
+# Reel: salidas (voz clonada, audio y video) y música con licencia de terceros
+reel/salidas/
+reel/musica.*
