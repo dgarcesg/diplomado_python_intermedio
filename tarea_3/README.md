@@ -114,7 +114,7 @@ Las salidas están en `web/data/`: `por_temporada.csv`, `por_temporada_peligro.c
 ## 6. Enlaces
 
 - Dashboard: https://infraestructura-ninos-costeros.streamlit.app/
-- Reel: *(pendiente)*
+- Reel: https://drive.google.com/file/d/1KCr2tccy8RB4c-hOPeQL6rROYDBzQmmE/view?usp=sharing
 - Publicación de LinkedIn: *(pendiente)*
 
 ## 7. Cómo reproducir
