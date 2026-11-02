@@ -47,7 +47,6 @@ TIPOS = {
     "Niño Costero 2023": ("Niño Costero 2023", COLOR_2023),
     "Otra con Niño costero": ("Otra temporada con meses de Niño costero", "#a3a29c"),
     "Normal": ("Temporada normal (línea base)", "#6b6a66"),
-    "Incompleta": ("Incompleta (solo enero a mayo de 2016)", "#383835"),
 }
 
 # Indicador: (etiqueta, unidad, decimales)
@@ -130,12 +129,19 @@ def valor(x, indicador):
 @st.cache_data
 def cargar_tablas():
     ub = {"ubigeo": str, "ubigeo_mapa": str}
+    # Solo temporadas completas: a la 2015-16 le falta diciembre de 2015 porque el periodo empieza
+    # en enero de 2016. Esos meses siguen en la serie mensual.
     temporadas = pd.read_csv(DATA / "por_temporada.csv")
+    temporadas = temporadas[temporadas.completa].reset_index(drop=True)
+    completas = set(temporadas.temporada)
     peligros = pd.read_csv(DATA / "por_temporada_peligro.csv")
+    peligros = peligros[peligros.temporada.isin(completas)]
     mensual = pd.read_csv(DATA / "serie_mensual.csv")
     mensual["fecha"] = pd.to_datetime(mensual["mes"] + "-01")
     deptos = pd.read_csv(DATA / "por_departamento.csv")
+    deptos = deptos[deptos.temporada.isin(completas)]
     distritos = pd.read_csv(DATA / "por_distrito.csv", dtype=ub)
+    distritos = distritos[distritos.temporada.isin(completas)]
     reincidentes = pd.read_csv(DATA / "reincidentes.csv", dtype=ub)
     kpis = json.loads((DATA / "kpis.json").read_text(encoding="utf-8"))
     return temporadas, peligros, mensual, deptos, distritos, reincidentes, kpis
@@ -169,8 +175,6 @@ def solo(geo, ubigeos):
 
 
 def etiqueta_temporada(fila):
-    if fila.tipo == "Incompleta":
-        return f"{fila.temporada} · incompleta (enero a mayo de 2016)"
     if isinstance(fila.foco, str):
         return f"{fila.temporada} · {fila.foco}"
     if fila.tipo == "Normal":
@@ -259,10 +263,8 @@ def figura_temporadas(t, indicador, mediana, alto=380):
         sub = t[t.tipo == tipo]
         if sub.empty:
             continue
-        rayado = tipo == "Incompleta"
         fig.add_bar(
             x=sub.temporada, y=sub.valor, name=nombre, marker_color=color,
-            marker_pattern=dict(shape="/" if rayado else "", fgcolor=TINTA_3, size=6),
             customdata=[valor(v, indicador) for v in sub.valor],
             hovertemplate="Temporada %{x}<br>%{customdata}<extra></extra>",
         )
@@ -530,8 +532,6 @@ nota_mult = (f"{etiqueta_ind} {'por temporada ' if eleccion == AMBOS else ''}fre
              f"4 temporadas normales ({num(mediana, dec_ind)}).")
 if mediana == 0:
     nota_mult = "Sin daño en las temporadas normales de referencia: no se puede comparar."
-if eleccion == "2015-16":
-    nota_mult += " Temporada incompleta."
 tarjeta(c2, "Veces una temporada normal", veces(multiplicador), nota_mult)
 tarjeta(c3, "Km de carretera destruidos", num(sel.carretera_destruida_km.sum()),
         f"Red nacional y departamental. Más {num(sel.camino_rural_destruido_km.sum())} km de camino rural.")
@@ -826,15 +826,9 @@ Todos los archivos se descargaron el 01/11/2026. El registro con URL, licencia y
 - **Sin valorización en soles:** el dataset solo trae el costo de la ayuda humanitaria.
 - **Mapa de 2020:** 16 distritos creados después no tienen polígono (60 registros viales). Si un distrito se
   dividió después de 2017, su daño de 2023 queda en el distrito nuevo y la reincidencia puede subestimarse.
-- **Línea base corta:** solo 4 temporadas normales; la 2015-16 está incompleta.
-
-#### Contexto (no forma parte de los datos analizados)
-
-OSITRÁN reportó en julio de 2026 que más de 80 puentes de carreteras concesionadas siguen en condición crítica,
-y que todavía hay puentes Bailey provisionales instalados tras El Niño de 2017
-([nota de prensa del 23/07/2026](https://www.gob.pe/institucion/ositran/noticias/1422567-ositran-alerta-que-mas-de-80-puentes-en-situacion-critica-requieren-intervencion-urgente-del-mtc-ante-el-fenomeno-el-nino)).
-El estado de cada puente se puede consultar en el panel
-[Puentes en Alerta](https://www.gob.pe/114098-consultar-el-panel-puentes-en-alerta).
+- **Línea base corta:** solo hay 4 temporadas normales en el periodo.
+- **Enero a mayo de 2016 solo aparece en la serie mensual:** su temporada (2015-16) queda incompleta porque el
+  periodo empieza en enero de 2016, así que no se muestra en los gráficos por temporada.
 """)
     st.markdown("#### Descargar los datos filtrados")
     st.caption(f"Distritos con daño vial en {nombre_seleccion}, en {zona}: una fila por distrito y temporada.")
