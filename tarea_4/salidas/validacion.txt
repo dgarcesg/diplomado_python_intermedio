@@ -1,0 +1,22 @@
+Validación ENAHO 2024 · limpiando-enaho
+============================================================
+Hogares: 966-Modulo34/sumaria-2024.dta | Personas: 966-Modulo02/enaho01-2024-200.dta
+
+[PASA] Llaves de hogares como texto, con sus ceros iniciales: conglome: 6 caracteres, vivienda: 3 caracteres, hogar: 2 caracteres, ubigeo: 6 caracteres
+[PASA] Llaves de personas como texto, con sus ceros iniciales: conglome: 6 caracteres, vivienda: 3 caracteres, hogar: 2 caracteres, codperso: 2 caracteres
+[PASA] Una fila por hogar en la sumaria (llaves únicas): 33,691 hogares (referencia 33,691)
+[PASA] Una fila por persona en miembros (llaves + codperso únicas): 117,721 filas en el módulo 02
+[PASA] Residentes habituales: 108,664 (referencia 108,664)
+[PASA] La unión no duplica personas: 108,664 filas tras unir
+[PASA] Toda persona encuentra su hogar: 0 personas sin hogar en la sumaria
+[PASA] Los 25 códigos territoriales (01-25), Lima y Callao separados: 25 códigos; faltan []; sobran []
+[PASA] Factor de expansión facpob07 completo y positivo: 0 vacíos; población expandida 34,147,768
+[PASA] Población expandida plausible para el Perú (30-37 millones): 34.15 millones
+[PASA] Pobreza monetaria nacional (personas × facpob07) a ±0.1 pp de 27.6 %: 27.53 %
+[PASA] (informativa) Pobreza con la sumaria (factor07 × mieperho) a ±0.1 pp de 27.6 %: 27.58 % (cálculo alternativo)
+[PASA] (informativa) Pobreza urbano (sumaria) a ±0.1 pp de 24.8 %: 24.81 % con la sumaria; 24.74 % con personas y facpob07
+[PASA] (informativa) Pobreza rural (sumaria) a ±0.1 pp de 39.3 %: 39.30 % con la sumaria; 39.44 % con personas y facpob07
+[PASA] (informativa) La ponderación importa (promedio simple ≠ ponderado): simple 25.61 % vs ponderado 27.53 %: sin factor se sesga el resultado
+
+Resultado: 15 de 15 verificaciones aprobadas; 0 esenciales fallidas.
+Base guardada: salidas/personas_2024.parquet (108,664 personas, 27 columnas) y salidas/indicadores.csv.

@@ -8,3 +8,6 @@ datos/
 
 # Configuración local de Claude Code
 .claude/settings.local.json
+
+# Base de personas que arma limpiando-enaho: son microdatos derivados y se regeneran con limpiar.py
+salidas/*.parquet
