@@ -1,0 +1,385 @@
+ ▐▛███▛█   Claude Code v2.1.319
+▝▜██████▀  Opus 5.5 · Claude Pro
+ ▝▝   ▝▝   ~\GITHUB\Diplomatura PUCP 2026\diplomado_python_intermedio\tarea…
+
+
+❯ /mcp.bcrp                                                                     
+
+  Read 2 files, ran 3 shell commands (ctrl+o to expand)
+
+● Voy a probar el servidor bcrp desde Claude Code: una llamada a cada
+  herramienta y una al recurso.
+
+  Called bcrp 4 times (ctrl+o to expand)
+
+● readMcpResource(Read resource "bcrp://serie/PN01273PM" from server "bcrp")
+  ⎿  {
+       "contents": [
+         {
+     … +15 lines (ctrl+o to expand)
+
+● Las cinco llamadas respondieron. Ahora corro las pruebas del contrato.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● El servidor bcrp está conectado a Claude Code y funciona: todas las
+  herramientas y el recurso respondieron con datos reales, y pasan las 10
+  pruebas (uv run pytest: las 8 del curso y las 2 tuyas).
+
+  /mcp.bcrp no es un comando. Si querías ver el estado del servidor, es /mcp. El
+  prompt del servidor se llama con /mcp__bcrp__informe <tema>, por ejemplo
+  /mcp__bcrp__informe inflación.
+
+  ┌─────────────────────────────────┬───────────────────────────────────────┐
+  │            Qué probé            │               Resultado               │
+  ├─────────────────────────────────┼───────────────────────────────────────┤
+  │ buscar_series("ipc 12 meses")   │ Primer resultado: PN01273PM (IPC      │
+  │                                 │ Lima, var% 12 meses)                  │
+  ├─────────────────────────────────┼───────────────────────────────────────┤
+  │ resumen(PN01273PM, 2025-12 →    │ Pasó de 1.51 % a 4.55 %: subió 3.04   │
+  │ 2026-09)                        │ puntos, con promedio de 3.42 % y el   │
+  │                                 │ máximo en 2026-09                     │
+  ├─────────────────────────────────┼───────────────────────────────────────┤
+  │ serie(PD04638PD, 13–15 oct      │ Tipo de cambio interbancario de       │
+  │ 2026)                           │ venta: 3.438, 3.439 y 3.428           │
+  ├─────────────────────────────────┼───────────────────────────────────────┤
+  │ comparar_paises(PER;CHL;COL,    │ Crecimiento promedio del PBI en esos  │
+  │ 2023–2025)                      │ años: Perú 2.20 %, Chile 1.98 %,      │
+  │                                 │ Colombia 1.66 %                       │
+  ├─────────────────────────────────┼───────────────────────────────────────┤
+  │ recurso bcrp://serie/PN01273PM  │ Devuelve la ficha completa: unidad,   │
+  │                                 │ fuente INEI, cobertura y enlace       │
+  └─────────────────────────────────┴───────────────────────────────────────┘
+
+  Hay dos cosas a tener en cuenta al leer las respuestas:
+  - variacion_pct en series que ya son porcentaje: con la inflación da 201.48 %,
+    que no es lo que se pregunta. Lo que sirve ahí es cambio, que son puntos
+    porcentuales. La descripción de la herramienta ya lo advierte.
+  - El campo cobertura sale "No indicada" en la serie del IPC, porque el
+    catálogo del BCRP no trae la geografía de esa serie. No es un error del
+    código.
+
+  La carpeta evidencias_ia/mcp/ todavía está vacía. Si quieres, armo ahí la
+  evidencia del uso del MCP; dime qué formato pide la tarea.
+
+✻ Churned for 1m 25s · done 9:24 PM
+
+❯  ¿cómo evolucionó la                                                          
+    inflación a 12 meses de Lima Metropolitana entre enero de 2020 y            
+    diciembre de 2024? Dame el primer y último valor, el máximo y el            
+    promedio, con código de serie, periodo y fuente.                            
+
+  Called bcrp (ctrl+o to expand)
+
+● Entre enero de 2020 y diciembre de 2024, la inflación a 12 meses de Lima
+  Metropolitana empezó y terminó casi en el mismo nivel, poco menos de 2 %. En
+  el medio subió con fuerza hasta un máximo de 8.81 % en junio de 2022.
+
+  Serie: PN01273PM, Índice de precios Lima Metropolitana (var% 12 meses), IPC.
+  Es mensual, con 60 datos en el periodo.
+
+  ┌──────────────────────┬────────┬───────────────────┐
+  │        Medida        │ Valor  │      Periodo      │
+  ├──────────────────────┼────────┼───────────────────┤
+  │ Primer valor         │ 1.89 % │ 2020-01           │
+  ├──────────────────────┼────────┼───────────────────┤
+  │ Último valor         │ 1.97 % │ 2024-12           │
+  ├──────────────────────┼────────┼───────────────────┤
+  │ Máximo               │ 8.81 % │ 2022-06           │
+  ├──────────────────────┼────────┼───────────────────┤
+  │ Mínimo               │ 1.60 % │ 2020-06           │
+  ├──────────────────────┼────────┼───────────────────┤
+  │ Promedio del periodo │ 4.47 % │ 2020-01 a 2024-12 │
+  └──────────────────────┴────────┴───────────────────┘
+
+  - Inicio y fin: entre el primer y el último dato la tasa subió apenas 0.08
+    puntos porcentuales.
+  - Promedio: como la tasa estuvo bastante por encima de 2 % en los años
+    intermedios, el promedio del periodo queda en 4.47 %, más del doble que los
+    extremos del periodo.
+  - Mínimo: fue a mediados de 2020, con 1.60 % en junio.
+
+  La herramienta también da una "variación porcentual" de 4.13 %. No sirve para
+  esta pregunta, porque mide cuánto cambió la tasa misma y no la inflación. El
+  dato útil es el cambio de 0.08 puntos.
+
+  Todas las cifras salen de la herramienta resumen del servidor bcrp; no hice
+  ningún cálculo a mano.
+
+  Fuente: https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01273PM/jso
+  n/2020-1/2024-12
+
+✻ Sautéed for 13s · done 9:26 PM
+
+❯ @bcrp:bcrp://serie/PN01273PM ¿Qué mide esta serie, en qué unidad              
+    está y cuál es su fuente original?                                          
+
+● Esta serie mide la inflación a 12 meses de Lima Metropolitana: cuánto
+  cambiaron los precios al consumidor (IPC) frente al mismo mes del año
+  anterior.
+
+  ┌────────────────────┬────────────────────────────────────────────────────┐
+  │       Campo        │                       Valor                        │
+  ├────────────────────┼────────────────────────────────────────────────────┤
+  │ Código             │ PN01273PM                                          │
+  ├────────────────────┼────────────────────────────────────────────────────┤
+  │ Qué mide           │ Índice de precios Lima Metropolitana (var% 12      │
+  │                    │ meses), IPC                                        │
+  ├────────────────────┼────────────────────────────────────────────────────┤
+  │ Unidad             │ Variación porcentual a 12 meses (var% 12 meses)    │
+  ├────────────────────┼────────────────────────────────────────────────────┤
+  │ Fuente original    │ INEI                                               │
+  ├────────────────────┼────────────────────────────────────────────────────┤
+  │ Quién la publica   │ BCRP, Departamento de Estadísticas de Precios      │
+  ├────────────────────┼────────────────────────────────────────────────────┤
+  │ Frecuencia         │ Mensual                                            │
+  ├────────────────────┼────────────────────────────────────────────────────┤
+  │ Datos desde        │ Enero de 1950                                      │
+  ├────────────────────┼────────────────────────────────────────────────────┤
+  │ Última             │ 8 de octubre de 2026                               │
+  │ actualización      │                                                    │
+  └────────────────────┴────────────────────────────────────────────────────┘
+
+  - Unidad: como ya es un porcentaje, cuando sube o baja se habla de puntos
+    porcentuales y no de una "variación porcentual".
+  - Fuente original: el INEI calcula el IPC y el BCRP lo vuelve a publicar en
+    sus series estadísticas.
+  - Fecha de fin: el catálogo dice diciembre de 2025, pero está atrasado. La API
+    ya trae datos hasta septiembre de 2026, como se vio en la consulta
+    anterior.
+
+  Enlace para citarla: https://estadisticas.bcrp.gob.pe/estadisticas/series/mens
+  uales/resultados/PN01273PM/html
+
+✻ Sautéed for 7s · done 9:28 PM
+
+❯ @bcrp:bcrp://departamento/06 ¿Qué series del BCRP hay para                    
+    Cajamarca? Con las herramientas del MCP, dime el mes de mayor  producción   
+    de cobre de Cajamarca en 2024 y el promedio mensual de  ese año.            
+
+● readMcpResource(Read resource "bcrp://departamento/06" from server "bcrp")
+  ⎿  {
+       "contents": [
+         {
+     … +311 lines (ctrl+o to expand)
+
+● El recurso da la serie mensual de cobre de Cajamarca: RD12956DM. Saco las
+  cifras de 2024 con resumen.
+
+  Called bcrp (ctrl+o to expand)
+
+● En 2024, la producción de cobre de Cajamarca llegó a su máximo en noviembre, 
+  con 2,349.4 toneladas métricas finas (tm.f). El promedio mensual del año fue 
+  1,932.9 tm.f.
+
+  Series del BCRP para Cajamarca
+
+  El recurso bcrp://departamento/06 lista 92 series de Cajamarca con datos hasta
+  2024 o después. Casi todas vienen en versión mensual, trimestral y anual.
+
+  ┌────────────────────────┬──────────────────┬─────────────────────────────┐
+  │          Tema          │ Fuente original  │           Qué hay           │
+  ├────────────────────────┼──────────────────┼─────────────────────────────┤
+  │ Producción minera      │ Ministerio de    │ Cobre, oro, plata, plomo y  │
+  │                        │ Energía y Minas  │ zinc                        │
+  ├────────────────────────┼──────────────────┼─────────────────────────────┤
+  │ Producción de          │ Ministerio de    │ En GWh y en var% anual      │
+  │ electricidad           │ Energía y Minas  │                             │
+  ├────────────────────────┼──────────────────┼─────────────────────────────┤
+  │ Venta de energía       │ Osinergmin       │ Solo var% anual, trimestral │
+  │ eléctrica              │                  │  y anual                    │
+  ├────────────────────────┼──────────────────┼─────────────────────────────┤
+  │ Crédito directo al     │                  │ En moneda nacional,         │
+  │ sector privado         │ SBS              │ extranjera y total          │
+  │                        │                  │ (millones S/)               │
+  ├────────────────────────┼──────────────────┼─────────────────────────────┤
+  │ Depósitos en el        │                  │ En moneda nacional,         │
+  │ sistema financiero     │ SBS              │ extranjera y total          │
+  │                        │                  │ (millones S/)               │
+  ├────────────────────────┼──────────────────┼─────────────────────────────┤
+  │ Recaudación de la      │                  │ Tributos internos, impuesto │
+  │ SUNAT                  │ Sunat            │  a la renta, IGV interno y  │
+  │                        │                  │ tributos aduaneros          │
+  ├────────────────────────┼──────────────────┼─────────────────────────────┤
+  │                        │ Ministerio de    │ Del gobierno regional y de  │
+  │ Gasto no financiero    │ Economía y       │ los gobiernos locales       │
+  │                        │ Finanzas         │                             │
+  ├────────────────────────┼──────────────────┼─────────────────────────────┤
+  │                        │ Ministerio de    │ Del gobierno nacional, del  │
+  │ Inversión bruta fija   │ Economía y       │ regional y de los locales   │
+  │                        │ Finanzas         │                             │
+  ├────────────────────────┼──────────────────┼─────────────────────────────┤
+  │ Afiliados activos al   │                  │                             │
+  │ Sistema Privado de     │ BCRP             │ En número y en var% anual   │
+  │ Pensiones              │                  │                             │
+  └────────────────────────┴──────────────────┴─────────────────────────────┘
+
+  Cobre de Cajamarca en 2024
+
+  Serie: RD12956DM, Producción de productos mineros según departamentos, Cobre,
+  Cajamarca. Es mensual, está en tm.f y tiene 12 datos en 2024. La fuente
+  original es el Ministerio de Energía y Minas.
+
+  ┌─────────────────────────┬──────────────┬───────────────────┐
+  │         Medida          │ Valor (tm.f) │      Periodo      │
+  ├─────────────────────────┼──────────────┼───────────────────┤
+  │ Mes de mayor producción │ 2,349.4      │ 2024-11           │
+  ├─────────────────────────┼──────────────┼───────────────────┤
+  │ Promedio mensual        │ 1,932.9      │ 2024-01 a 2024-12 │
+  ├─────────────────────────┼──────────────┼───────────────────┤
+  │ Mes de menor producción │ 1,506.3      │ 2024-04           │
+  ├─────────────────────────┼──────────────┼───────────────────┤
+  │ Primer mes              │ 1,915.7      │ 2024-01           │
+  ├─────────────────────────┼──────────────┼───────────────────┤
+  │ Último mes              │ 2,331.4      │ 2024-12           │
+  └─────────────────────────┴──────────────┴───────────────────┘
+
+  Entre enero y diciembre la producción subió 415.7 tm.f, es decir, 21.7 %.
+  Diciembre quedó muy cerca del máximo de noviembre.
+
+  Todas las cifras salen de la herramienta resumen del servidor bcrp; no hice
+  ningún cálculo a mano.
+
+  Fuente: https://estadisticas.bcrp.gob.pe/estadisticas/series/api/RD12956DM/jso
+  n/2024-1/2024-12
+
+✻ Crunched for 20s · done 9:29 PM
+
+❯ Con comparar_paises: ¿creció más el Perú que Chile y Colombia entre           
+    2015 y 2024? Dame el promedio de cada país y la fuente.                     
+
+  Called bcrp (ctrl+o to expand)
+
+● No del todo. Entre 2015 y 2024 el Perú creció más que Chile, pero menos que
+  Colombia.
+
+  Indicador: crecimiento anual del PBI real, en % (NY.GDP.MKTP.KD.ZG, Banco
+  Mundial).
+
+  ┌──────────┬────────────────────────────────┐
+  │   País   │ Crecimiento promedio 2015–2024 │
+  ├──────────┼────────────────────────────────┤
+  │ Colombia │ 2.54 %                         │
+  ├──────────┼────────────────────────────────┤
+  │ Perú     │ 2.44 %                         │
+  ├──────────┼────────────────────────────────┤
+  │ Chile    │ 2.06 %                         │
+  └──────────┴────────────────────────────────┘
+
+  - El año 2020 pesa mucho en el promedio del Perú. El Perú tuvo la caída más
+    fuerte de los tres en 2020 (−10.93 %) y también el mayor rebote en 2021
+    (+13.42 %).
+  - Antes de la pandemia el Perú iba adelante. Entre 2015 y 2018 creció más que
+    Chile y que Colombia cada año.
+  - Al final del periodo, resultados mixtos. En 2023 el Perú cayó (−0.35 %),
+    mientras Chile (0.68 %) y Colombia (0.84 %) crecieron poco. En 2024 el Perú
+    fue el que más creció de los tres (3.52 %).
+  - Qué mide el promedio: es el promedio simple de las 10 tasas anuales, no el
+    crecimiento acumulado del periodo. La herramienta no da el acumulado, así
+    que no lo estimé.
+
+  Todas las cifras salen de la herramienta comparar_paises del servidor bcrp; no
+  hice ningún cálculo a mano.
+
+  Fuente: https://api.worldbank.org/v2/country/PER;CHL;COL/indicator/NY.GDP.MKTP
+  .KD.ZG?format=json&date=2015:2024&per_page=1000
+
+✻ Cooked for 13s · done 9:30 PM
+
+❯ /mcp__bcrp__informe tipo de cambio                                            
+
+● El argumento llegó cortado: el prompt recibió solo "tipo" en vez de "tipo de
+  cambio". Escribo el informe sobre el tipo de cambio, que es lo que pediste.
+  Primero busco las series.
+
+  Called bcrp 5 times (ctrl+o to expand)
+
+● El último mes con datos es octubre de 2026, así que tomo de noviembre de 2025
+  a octubre de 2026. El último dato diario es del 5 de noviembre de 2026.
+
+  Called bcrp 4 times (ctrl+o to expand)
+
+● Tipo de cambio en el Perú, de noviembre de 2025 a octubre de 2026
+
+  En los últimos 12 meses con datos, el sol se depreció un poco frente al dólar.
+  El tipo de cambio interbancario de venta, en promedio mensual, pasó de S/ 
+  3.374 (PN01206PM, 2025-11) a S/ 3.443 (PN01206PM, 2026-10): una subida de 2.06
+  % (PN01206PM, 2025-11 a 2026-10). El camino no fue en línea recta. Bajó hasta
+  enero, subió con fuerza hasta abril, volvió a bajar a mitad de año y repuntó
+  en septiembre y octubre.
+
+  Tipo de cambio nominal (S/ por US$, interbancario, venta)
+
+  ┌───────────────┬───────────────────┬─────────────────┬───────────────────┐
+  │    Medida     │ Promedio del mes  │   Fin de mes    │      Diario       │
+  │               │    (PN01206PM)    │   (PN01215PM)   │    (PD04638PD)    │
+  ├───────────────┼───────────────────┼─────────────────┼───────────────────┤
+  │ Primer dato   │ 3.374 (2025-11)   │ 3.363 (2025-11) │ 3.376             │
+  │               │                   │                 │ (2025-11-05)      │
+  ├───────────────┼───────────────────┼─────────────────┼───────────────────┤
+  │ Último dato   │ 3.443 (2026-10)   │ 3.466 (2026-10) │ 3.449             │
+  │               │                   │                 │ (2026-11-05)      │
+  ├───────────────┼───────────────────┼─────────────────┼───────────────────┤
+  │ Variación     │ +2.06 %           │ +3.04 %         │ +2.14 %           │
+  ├───────────────┼───────────────────┼─────────────────┼───────────────────┤
+  │ Promedio del  │ 3.401             │ 3.412           │ 3.400 (246 días   │
+  │ periodo       │                   │                 │ con dato)         │
+  ├───────────────┼───────────────────┼─────────────────┼───────────────────┤
+  │ Máximo        │ 3.454 (2026-04)   │ 3.519 (2026-04) │ 3.530             │
+  │               │                   │                 │ (2026-04-29)      │
+  ├───────────────┼───────────────────┼─────────────────┼───────────────────┤
+  │ Mínimo        │ 3.357 (2026-01)   │ 3.356 (2026-02) │ 3.342             │
+  │               │                   │                 │ (2026-01-28)      │
+  └───────────────┴───────────────────┴─────────────────┴───────────────────┘
+
+  - El sol estuvo más fuerte a comienzos de 2026. El mínimo diario fue S/ 3.342
+    (PD04638PD, 2026-01-28) y el promedio de enero, S/ 3.357 (PN01206PM,
+    2026-01).
+  - Abril fue el mes más caro para comprar dólares. El promedio del mes fue S/
+    3.454 (PN01206PM, 2026-04) y el máximo diario, S/ 3.530 (PD04638PD,
+    2026-04-29).
+  - El dólar repuntó al final del periodo. El promedio mensual pasó de S/ 3.368
+    en agosto a S/ 3.383 en septiembre y S/ 3.443 en octubre (PN01206PM, 2026-08
+    a 2026-10). En los primeros días de noviembre el tipo de cambio se mueve
+    alrededor de S/ 3.45: 3.449 el 5 de noviembre (PD04638PD, 2026-11-05).
+
+  Tipo de cambio real
+
+  El índice del tipo de cambio real multilateral (base 2009 = 100) subió de
+  86.38 (PN01259PM, 2025-11) a 88.09 (PN01259PM, 2026-10), un alza de 1.98 %.
+  Octubre de 2026 es el valor más alto del periodo (PN01259PM, 2026-10), y el
+  promedio del periodo fue 87.17. Que el índice suba quiere decir que el sol se
+  abarató en términos reales frente a las monedas de los socios comerciales del
+  Perú.
+
+  Fuentes
+
+  - PN01206PM: https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01206P
+    M/json/2025-11/2026-10
+  - PN01215PM: https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01215P
+    M/json/2025-11/2026-10
+  - PD04638PD: https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PD04638P
+    D/json/2025-11-05/2026-11-05
+  - PN01259PM: https://estadisticas.bcrp.gob.pe/estadisticas/series/api/PN01259P
+    M/json/2025-11/2026-10
+
+  Lo que no incluí
+
+  - Comparación con otros países: no usé comparar_paises. El Banco Mundial solo
+    tiene datos anuales, que no cubren estos 12 meses, y comparar el nivel del
+    tipo de cambio entre monedas distintas no dice nada.
+  - Por qué se movió el tipo de cambio: las series no lo explican, así que no lo
+    supongo.
+  - Lo que no busqué: las compras y ventas de dólares del BCRP y las
+    expectativas de tipo de cambio. Pueden estar en el catálogo, pero no las
+    consulté.
+
+  ---
+
+  Nota sobre el comando: el prompt recibió solo "tipo" porque Claude Code separa
+  los argumentos por espacios y el prompt informe tiene un único argumento,
+  tema. Para temas de varias palabras, prueba ponerlos entre comillas:
+  /mcp__bcrp__informe "tipo de cambio". Si aun así llega cortado, usa una sola
+  palabra, como dólar.
+
+✻ Worked for 53s · done 9:31 PM
