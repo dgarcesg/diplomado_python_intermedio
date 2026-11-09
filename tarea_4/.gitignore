@@ -1,0 +1,10 @@
+# Entorno
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Datos que se descargan: microdatos de la ENAHO (datos/) y catálogo del BCRP (mcp/datos/)
+datos/
+
+# Configuración local de Claude Code
+.claude/settings.local.json
