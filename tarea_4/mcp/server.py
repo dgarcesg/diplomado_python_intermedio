@@ -226,6 +226,65 @@ def comparar_paises(paises: str = "PER;CHL;COL", indicador: str = "NY.GDP.MKTP.K
                        for pais, datos in por_pais.items()},
             "fuente": url}
 
+FIGURAS = AQUI.parent / "figuras"
+COLORES = ["#2a78d6", "#d95f02", "#1b9e77", "#7570b3"]  # orden fijo: la primera serie siempre en azul
+
+
+@mcp.tool(annotations={"readOnlyHint": False, "openWorldHint": True})
+def graficar_serie(codigos: str, desde: str, hasta: str, titulo: str | None = None) -> dict:
+    """Grafica una o hasta cuatro series del BCRP en un mismo eje y guarda el PNG en figuras/. Úsenla cuando pidan
+    un gráfico de una serie del BCRP (inflación, tipo de cambio, PBI, producción minera…) para un informe.
+
+    codigos: uno o varios códigos separados por ";" (por ejemplo "PN01273PM" o "PN01273PM;PN01271PM"); todos deben
+    tener la misma frecuencia y la misma unidad, porque nunca se usan dos ejes. Las fechas se escriben como en serie.
+    titulo: lo que muestra el gráfico (un hallazgo, no solo el tema); si falta, se usa el nombre de la serie.
+    Devuelve la ruta del PNG, el primer y último dato, el máximo y el mínimo de cada serie, y las fuentes.
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    lista = [c.strip() for c in codigos.replace(",", ";").split(";") if c.strip()]
+    if not 1 <= len(lista) <= 4:
+        raise ToolError("Pasen entre 1 y 4 códigos separados por ';'.")
+    datos = [serie(c, desde, hasta) for c in lista]
+    if len({d["frecuencia"] for d in datos}) > 1:
+        raise ToolError("Las series tienen frecuencias distintas: grafíquenlas por separado.")
+    unidades = {_unidad(_fila(c)) for c in lista}
+    if len(unidades) > 1:
+        raise ToolError(f"Las series tienen unidades distintas ({', '.join(map(str, unidades))}): un gráfico con dos "
+                        "ejes engaña. Grafíquenlas por separado.")
+    fig, ax = plt.subplots(figsize=(8, 4.5), facecolor="#fcfcfb")
+    ax.set_facecolor("#fcfcfb")
+    resumenes = []
+    for d, color in zip(datos, COLORES):
+        if not d["datos"]:
+            raise ToolError(f"La serie {d['codigo']} no tiene datos entre {desde} y {hasta}.")
+        x = pd.to_datetime([p["periodo"].replace("-T", "-Q") for p in d["datos"]])
+        y = [p["valor"] for p in d["datos"]]
+        ax.plot(x, y, color=color, lw=2, label=f"{d['nombre']} ({d['codigo']})")
+        maximo, minimo = max(d["datos"], key=lambda p: p["valor"]), min(d["datos"], key=lambda p: p["valor"])
+        resumenes.append({"codigo": d["codigo"], "nombre": d["nombre"], "primero": d["datos"][0],
+                          "ultimo": d["datos"][-1], "maximo": maximo, "minimo": minimo, "fuente": d["fuente"]})
+    for lado in ("top", "right"):
+        ax.spines[lado].set_visible(False)
+    ax.tick_params(colors="#52514e", labelsize=9)
+    ax.set_ylabel(next(iter(unidades)) or "", color="#52514e")
+    ax.grid(axis="y", color="#e4e3df", lw=0.6)
+    if len(datos) > 1:
+        ax.legend(frameon=False, fontsize=8, loc="best")
+    fig.suptitle(titulo or datos[0]["nombre"], x=0.02, ha="left", fontsize=11, fontweight="bold", color="#0b0b0b")
+    ax.set_title(f"{desde} a {hasta} · {datos[0]['frecuencia'].lower()}", loc="left", fontsize=9, color="#52514e")
+    fig.text(0.02, 0.01, "Fuente: BCRP, series estadísticas (" + ", ".join(lista) + "). Elaboración propia.",
+             fontsize=7, color="#52514e")
+    fig.tight_layout(rect=(0, 0.03, 1, 0.95))
+    FIGURAS.mkdir(exist_ok=True)
+    ruta = FIGURAS / f"bcrp_{'_'.join(lista)}_{desde}_{hasta}.png"
+    fig.savefig(ruta, dpi=200, facecolor="#fcfcfb")
+    plt.close(fig)
+    return {"archivo": str(ruta.relative_to(AQUI.parent)).replace("\\", "/"), "series": resumenes}
+
+
 # TODO 4 · Recursos. En Claude Code se adjuntan con @, por ejemplo @bcrp:bcrp://serie/PN01273PM o
 # @bcrp:bcrp://departamento/06; el agente también puede leerlos por su cuenta.
 WEB = "https://estadisticas.bcrp.gob.pe/estadisticas/series"

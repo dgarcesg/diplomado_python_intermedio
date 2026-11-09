@@ -1,0 +1,36 @@
+grupo,categoria,codigo,pobreza_pct,pobreza_extrema_pct,pobreza_pct_sumaria,poblacion_expandida,n_muestra
+nacional,Perú,00,27.53,5.5,27.58,34147768,108664
+area,Rural,,39.44,15.6,39.3,6486385,36071
+area,Urbana,,24.74,3.13,24.81,27661382,72593
+sexo,Hombre,,27.37,5.37,,16453003,52587
+sexo,Mujer,,27.68,5.62,,17694764,56077
+grupo_edad,0-14,,37.52,8.59,,7941994,26489
+grupo_edad,15-29,,25.97,4.5,,7512400,23122
+grupo_edad,30-44,,27.87,5.59,,6689119,20648
+grupo_edad,45-64,,21.15,3.61,,7803731,24735
+grupo_edad,65 y más,,22.74,4.81,,4200522,13670
+departamento,Amazonas,01,26.08,6.15,25.75,430252,3911
+departamento,Áncash,02,22.88,5.76,22.77,1199410,4576
+departamento,Apurímac,03,24.09,5.18,23.96,474458,2500
+departamento,Arequipa,04,15.77,1.62,15.78,1415224,4645
+departamento,Ayacucho,05,33.04,9.24,32.76,755197,3308
+departamento,Cajamarca,06,44.99,19.62,45.01,1547849,4468
+departamento,Callao,07,33.77,4.98,33.86,1138852,3457
+departamento,Cusco,08,18.54,2.15,18.54,1380357,3777
+departamento,Huancavelica,09,33.61,11.28,33.4,525028,3244
+departamento,Huánuco,10,39.47,12.4,38.96,910900,3903
+departamento,Ica,11,5.91,0.15,6.01,855183,4838
+departamento,Junín,12,18.61,3.81,18.5,1436462,4658
+departamento,La Libertad,13,30.07,6.58,30.19,2064878,5028
+departamento,Lambayeque,14,14.05,0.5,14.04,1348585,4405
+departamento,Lima,15,26.89,3.12,27.07,11233286,14823
+departamento,Loreto,16,42.61,15.01,42.97,1121012,5678
+departamento,Madre de Dios,17,11.14,1.53,11.15,165829,2045
+departamento,Moquegua,18,10.88,2.34,10.97,196788,2511
+departamento,Pasco,19,39.28,8.27,38.97,323033,2746
+departamento,Piura,20,31.81,4.36,31.86,1970217,5876
+departamento,Puno,21,40.42,12.63,39.94,1535441,3112
+departamento,San Martín,22,21.99,4.45,22.02,937167,4619
+departamento,Tacna,23,23.88,2.58,23.99,375607,3622
+departamento,Tumbes,24,26.6,1.06,26.9,261973,2771
+departamento,Ucayali,25,27.12,3.33,27.07,544778,4143

@@ -1,0 +1,141 @@
+ ▐▛███▛█   Claude Code v2.1.319
+▝▜██████▀  Opus 5.5 · Claude Pro
+ ▝▝   ▝▝   ~\GITHUB\Diplomatura PUCP 2026\diplomado_python_intermedio\tarea…
+
+
+❯ Haz un mapa de la pobreza monetaria por departamento con ENAHO 2024           
+
+● Skill(mapeando-enaho)
+  ⎿  Successfully loaded skill
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● salidas/personas_2024.parquet no existe, aunque validacion.txt dice que se
+  guardó. Así que antes corro la skill de limpieza.
+
+● Skill(limpiando-enaho)
+  ⎿  Successfully loaded skill
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● El script falló con código 1 por la consola de Windows (cp1252), que no puede
+  imprimir «≠», no por una validación. Voy a revisar en qué punto ocurrió antes
+  de seguir.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● El fallo fue en el print final, tras pasar las validaciones y escribir los
+  archivos. Vuelvo a correr el script con la consola en UTF-8 para confirmar
+  código 0, y después el mapa, que también imprime «→».
+
+  Read 1 file, ran 3 shell commands, wrote 1 memory (ctrl+o to expand)
+
+● Hice el mapa: mapas/pobreza_departamento_2024.png. Están los 25 departamentos,
+  con Lima (15) y Callao (07) por separado. Los datos y las formas del mapa se
+  unieron por el código del departamento (los dos primeros dígitos del ubigeo),
+  no por el nombre.
+
+  Resultados (% de personas en pobreza monetaria, ponderado con facpob07):
+  - Más alto: Cajamarca, 45,0 %. Le siguen Loreto (42,6 %) y Puno (40,4 %).
+  - Más bajo: Ica, 5,9 %. Le siguen Moquegua (10,9 %) y Madre de Dios (11,1 %).
+  - Nacional: 27,53 %.
+
+  Comparación con la referencia de la Sesión 16
+  (salidas/comparacion_mapa_referencia.csv):
+  - La referencia se calculó por hogares (factor07 × mieperho). Con ese mismo
+    método coinciden los 25 departamentos (diferencia máxima de 0,1 puntos).
+  - El mapa usa otro método, personas × facpob07. Con él coinciden 16 de 25, y
+    la diferencia más grande es de 0,5 puntos (Huánuco y Puno).
+  - Esas diferencias salen de usar personas en vez de hogares como unidad de
+    ponderación, no de un error. No ajusté nada a mano.
+
+  Un problema al correrlo: la tabla de personas (salidas/personas_2024.parquet)
+  no existía, así que primero corrí la limpieza: pasó las 15 verificaciones.
+  - Esa primera corrida terminó con código 1, pero no por los datos. La consola
+    de Windows no puede mostrar un símbolo («≠») del texto que se imprime al
+    final, cuando los archivos ya estaban guardados.
+  - Volví a correr la limpieza y el mapa con PYTHONIOENCODING=utf-8, sin cambiar
+    los scripts, y los dos terminaron con código 0.
+  - Si quieres evitarlo de raíz, se puede agregar
+    sys.stdout.reconfigure(encoding="utf-8") al inicio de los dos scripts.
+
+  El mapa muestra diferencias entre departamentos, no sus causas.
+
+  Fuente: INEI, ENAHO 2024 (módulos 34 y 02), cálculo propio con limpiar.py.
+
+  No hice commit; los cambios solo están en tu carpeta local.
+
+✻ Worked for 2m 14s · done 10:09 PM
+
+❯ Grafica la pobreza entre hombres y mujeres                                    
+
+● Skill(graficando-enaho)
+  ⎿  Successfully loaded skill
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Hice el gráfico de barras: figuras/pobreza_por_sexo_2024.png.
+
+  Resultados (% de personas en pobreza monetaria, ponderado con facpob07):
+
+  ┌────────┬───────────────────┐
+  │  Sexo  │ Pobreza monetaria │
+  ├────────┼───────────────────┤
+  │ Mujer  │ 27,68 %           │
+  ├────────┼───────────────────┤
+  │ Hombre │ 27,37 %           │
+  ├────────┼───────────────────┤
+  │ Perú   │ 27,53 %           │
+  └────────┴───────────────────┘
+
+  La pobreza es prácticamente igual: las mujeres están 0,3 puntos por encima de
+  los hombres, y los dos grupos quedan a menos de 0,2 puntos del promedio
+  nacional. El script no calcula un margen de error, así que no se puede afirmar
+  que esa pequeña diferencia sea real.
+
+  Hay dos detalles visuales que no corregí, porque la skill pide correr el
+  script tal cual:
+  - El título se corta en dos líneas y deja «%)» solo en la segunda.
+  - La etiqueta «27.4 %» de la barra de hombres queda encima de la línea
+    punteada del promedio nacional.
+
+  Puedo ajustar graficar.py para arreglarlos si quieres.
+
+  Fuente: INEI, ENAHO 2024 (módulos 34 y 02), cálculo propio con limpiar.py.
+
+✻ Sautéed for 27s · done 10:12 PM
+
+❯ /graficando-enaho area                                                        
+
+  Read 1 file, ran 1 shell command (ctrl+o to expand)
+
+● Hice el gráfico de barras por área: figuras/pobreza_por_area_2024.png.
+
+  Resultados (% de personas en pobreza monetaria, ponderado con facpob07):
+
+  ┌────────┬───────────────────┐
+  │  Área  │ Pobreza monetaria │
+  ├────────┼───────────────────┤
+  │ Rural  │ 39,44 %           │
+  ├────────┼───────────────────┤
+  │ Urbana │ 24,74 %           │
+  ├────────┼───────────────────┤
+  │ Perú   │ 27,53 %           │
+  └────────┴───────────────────┘
+
+  La pobreza rural es 14,7 puntos más alta que la urbana. La rural queda por
+  encima del promedio nacional y la urbana un poco por debajo.
+
+  Estas cifras no son exactamente las oficiales del INEI, que calcula por
+  hogares (urbana 24,8 % y rural 39,3 %). Con ese método, la limpieza obtuvo
+  24,81 % y 39,30 %, que sí coinciden. El gráfico cuenta personas en vez de
+  hogares, y por eso hay unas décimas de diferencia.
+
+  Esta vez el gráfico no tiene los problemas del de sexo: el título se lee
+  completo y las etiquetas no chocan con la línea del promedio.
+
+  La diferencia entre áreas es descriptiva; el gráfico no muestra sus causas.
+
+  Fuente: INEI, ENAHO 2024 (módulos 34 y 02), cálculo propio con limpiar.py.
+
+✻ Worked for 24s · done 10:13 PM

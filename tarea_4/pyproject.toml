@@ -5,9 +5,11 @@ description = "Tarea 4: agente de investigación socioeconómica con un MCP del 
 requires-python = ">=3.11"
 dependencies = [
     "fastmcp>=4,<5",
+    "geopandas>=1.2.0",
     "httpx",
     "matplotlib>=3.11.2",
     "pandas",
+    "pyarrow>=26.0.1",
 ]
 
 [dependency-groups]
