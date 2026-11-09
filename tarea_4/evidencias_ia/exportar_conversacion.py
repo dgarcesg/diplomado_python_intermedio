@@ -18,6 +18,7 @@ import json
 import re
 import sys
 from pathlib import Path
+USUARIO = Path.home().name
 
 MAX_ENTRADA = 4000
 MAX_RESULTADO = 2500
@@ -35,9 +36,9 @@ def ocultar(texto):
     texto = re.sub(r"[\w.+-]+@[\w-]+\.[\w.-]+", "[correo oculto]", texto)
     texto = re.sub(r'"(organizationUuid|accountUuid)": "[^"]+"', r'"": "[oculto]"', texto)
     texto = re.sub(r"noreply\[correo oculto\]", "noreply@anthropic.com", texto)  # la firma de los commits no es privada
-    for ruta in (r"C:\\Users\\agarces", "C:/Users/agarces", "/c/Users/agarces"):
-        texto = texto.replace(ruta.replace("\\\\", "\\"), "~")
-    return texto.replace("agarces", "usuario")
+    for ruta in (str(Path.home()), Path.home().as_posix(), f"/c/Users/{USUARIO}"):
+        texto = texto.replace(ruta, "~")
+    return texto.replace(USUARIO, "usuario")
 
 
 def limpiar_mensaje(texto):
