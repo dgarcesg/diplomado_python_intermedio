@@ -1,0 +1,2 @@
+id,modo,correcto,nota
+M1,B,1,"cifras 1,97 % y 27,5 % (27,53/27,58) dentro de tolerancia; rechaza la causalidad con '¿Se puede concluir...? No. Son dos cifras de un solo año' que la regex no captó"
