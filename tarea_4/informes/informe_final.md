@@ -8,9 +8,9 @@ hay cálculos a mano.
 
 ## 1. Pregunta, objetivo y delimitación
 
-**Pregunta.** ¿Cómo evolucionaron la inflación y la producción de cobre del Perú entre 2020 y 2024, y qué brechas
-territoriales y entre áreas urbana y rural mostraba la pobreza monetaria en 2024, en particular en Arequipa, uno de los
-principales productores de cobre del país?
+**Pregunta.** ¿Cómo evolucionaron la inflación y la producción de cobre del Perú entre 2020 y 2024, y qué diferencias
+de pobreza monetaria había en 2024 entre las áreas urbana y rural y entre departamentos, en particular en Arequipa, uno
+de los principales productores de cobre del país?
 
 **Objetivo.** Describir, con datos oficiales y citados, (a) la trayectoria de la inflación a 12 meses de Lima
 Metropolitana y de la producción de cobre de Arequipa entre 2020 y 2024, y (b) la pobreza monetaria de 2024 por área

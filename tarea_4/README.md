@@ -11,8 +11,8 @@ pruebas automatizadas, un informe de investigación verificado y un experimento 
 herramientas.
 
 **Pregunta de investigación:** ¿Cómo evolucionaron la inflación y la producción de cobre del Perú entre 2020 y 2024, y
-qué brechas territoriales y entre áreas urbana y rural mostraba la pobreza monetaria en 2024, en particular en Arequipa,
-uno de los principales productores de cobre del país?
+qué diferencias de pobreza monetaria había en 2024 entre las áreas urbana y rural y entre departamentos, en particular
+en Arequipa, uno de los principales productores de cobre del país?
 
 ## 2. Arquitectura
 
